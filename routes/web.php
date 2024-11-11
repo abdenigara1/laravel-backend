@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HeroController;
+use App\Http\Controllers\interController;
+
 
 
 /*
@@ -18,4 +19,5 @@ use App\Http\Controllers\HeroController;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('hero', [HeroController::class, 'index']);
+Route::get('hero', [interController::class, 'index']);
+
