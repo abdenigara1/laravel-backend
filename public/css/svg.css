@@ -1,0 +1,7 @@
+svg:hover path {
+  fill: #7c3aed;
+}
+
+png:hover {
+  filter: grayscale(100%);
+}
