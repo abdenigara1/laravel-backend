@@ -298,17 +298,23 @@
         <p>Tidak ada data terbaru</p>
     @endforelse
   </section>
+  @forelse ($ecos as $eco)
   <section class="home2 py-2  ">
-    <div class="flex flex-row max-w-7xl gap-x-8 items-center mx-auto justify-center ">
-      <img class="aspect-auto" src="/src/illustration_2.png" alt="">
+    <div class="flex flex-row max-w-7xl gap-x-8 items-center mx-auto justify-center">
+        <div class="h-full w-[500px] overflow-hidden rounded-xl">
+            <img class="w-full h-full object-cover" src="{{ asset('storage/' . $eco->banner) }}" alt="">
+        </div>
+
+
+
       <div class="flex flex-col my-20">
-        <h1 class="text-gray-800 font-['Clash_Display'] text-[50px] leading-none">
-          We Have Very <br>
-          Strong Ecosystem
+        <h1 class="text-gray-800 font-['Clash_Display'] text-[50px] leading-none line-clamp-2 max-w-xl ">
+            {{ $eco->header }}
         </h1>
-        <p class="text-gray-600 mt-8">
-          We provide a variety of servers to grow your users <br>
-          acquisition much more user-friendly and boosting up sales.
+        <p class="text-gray-600 mt-8  line-clamp-2 max-w-xl">
+            {{ $eco->subHeader }}
+
+
         </p>
 
         <div class="container mt-8 ">
@@ -316,7 +322,7 @@
             <div class="flex flex-row py-4 px-5 gap-x-2  items-center bg-white rounded-2xl">
               <img src="/src/f1.png" alt="">
               <div class="texta flex-col ">
-                <p class="font-bold">$880 Mio</p>
+                <p class="font-bold">{{ $eco->achA }}</p>
                 <p class="text-gray-600">
                   Company budget saved </p>
               </div>
@@ -325,7 +331,7 @@
             <div class="flex flex-row py-4 px-5 gap-x-2  items-center bg-white rounded-2xl">
               <img src="/src/f1.png" alt="">
               <div class="texta flex-col ">
-                <p class="font-bold">450,392</p>
+                <p class="font-bold">{{ $eco->achB }}</p>
                 <p class="text-gray-600">
                   All servers available </p>
               </div>
@@ -333,7 +339,7 @@
             <div class="flex flex-row py-4 px-5 gap-x-2  items-center bg-white rounded-2xl">
               <img src="/src/f1.png" alt="">
               <div class="texta flex-col ">
-                <p class="font-bold">189 Mio</p>
+                <p class="font-bold">{{ $eco->achC }}</p>
                 <p class="text-gray-600">
                   Websites are running good </p>
               </div>
@@ -357,6 +363,9 @@
       </div>
     </div>
   </section>
+  @empty
+  <p>Tidak ada data terbaru</p>
+    @endforelse
   <!-- tab terakhir -->
   <section class="py-20">
     <h1 class=" text-gray-800 font-['Clash_Display'] text-[50px]  text-center">Our Showcase</h1>
