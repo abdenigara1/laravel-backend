@@ -9,6 +9,7 @@ class Fitur extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'header',
         'logo',
         'logoA',
         'logoB',

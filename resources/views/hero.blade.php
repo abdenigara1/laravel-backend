@@ -264,40 +264,39 @@
   <section class="features max-w-7xl py-2 m-auto ">
     <h3 class="text-center text-gray-800 font-['Clash_Display'] text-[50px] leading-none py-8">Your Best Choices</h3>
     <div class="grid grid-cols-4 gap-x-5 py-20 mx-5 ">
-
+    @forelse ($fiturs as $fitur)
       <div
         class="container flex flex-col p-5 bg-white rounded-2xl my-card  shadow-sm shadow-black  hover:bg-b hover:text-white ease-in duration-300 backdrop-blur-lg aspect-w-1 aspect-h-1 hover:shadow-sm hover:shadow-white ">
-        <img class="icon size-12" src="/src/f1.png" alt="">
-        <h3 class="font-['Clash_Display'] text-[20px] py-4 ">EXTRA LAYERS</h3>
-        <P class="text-gray-600">ingat darah keturunan pekai akan mengalir ke anak dan cucunya dan ia akan tetap jadi
-          pengianat</P>
-        <a href="" class="font-['Clash_Display'] text-[20px] py-5 text-violet-600"> learn more</a>
+        <img class="icon size-12" src="{{ asset('storage/' . $fitur->logo) }}" alt="">
+        <h3 class="font-['Clash_Display'] text-[20px] py-4 ">{{ $fitur->judul }}</h3>
+        <P class="text-gray-600">{{ $fitur->deskripsi }}</P>
+        <a href="{{ $fitur->link }}" class="font-['Clash_Display'] text-[20px] py-5 text-violet-600"> learnmore</a>
       </div>
       <div
         class="container flex flex-col p-5 bg-white rounded-2xl my-card  shadow-sm shadow-black  hover:bg-b hover:text-white ease-in duration-300 backdrop-blur-lg aspect-w-1 aspect-h-1 hover:shadow-sm hover:shadow-white">
-        <img class="icon size-12" src="/src/f2.png" alt="">
-        <h3 class="font-['Clash_Display'] text-[20px] py-4 ">Customizable</h3>
-        <P class="text-gray-600">ingat darah keturunan pekai akan mengalir ke anak dan cucunya dan ia akan tetap jadi
-          pengianat</P>
-        <a href="" class="font-['Clash_Display'] text-[20px] py-5 text-violet-600"> learn more</a>
+        <img class="icon size-12" src="{{ asset('storage/' . $fitur->logoA) }}" alt="">
+        <h3 class="font-['Clash_Display'] text-[20px] py-4 ">{{ $fitur->judulA }}</h3>
+        <P class="text-gray-600">{{ $fitur->deskripsiA}}</P>
+        <a href="{{ $fitur->linkA }}" class="font-['Clash_Display'] text-[20px] py-5 text-violet-600">learnmore</a>
       </div>
       <div
         class="container flex flex-col p-5 bg-white rounded-2xl my-card shadow-sm shadow-black hover:bg-b hover:text-white ease-in duration-300 backdrop-blur-lg aspect-w-1 aspect-h-1 hover:shadow-sm hover:shadow-white">
-        <img class="icon size-12" src="/src/f3.png" alt="">
-        <h3 class="font-['Clash_Display'] text-[20px] py-4 ">AI Automation</h3>
-        <P class="text-gray-600">ingat darah keturunan pekai akan mengalir ke anak dan cucunya dan ia akan tetap jadi
-          pengianat</P>
-        <a href="" class="font-['Clash_Display'] text-[20px] py-5 text-violet-600"> learn more</a>
+        <img class="icon size-12" src="{{ asset('storage/' . $fitur->logoB) }}" alt="">
+        <h3 class="font-['Clash_Display'] text-[20px] py-4 ">{{ $fitur->judulB }}</h3>
+        <P class="text-gray-600">{{ $fitur->deskripsiB }}</P>
+        <a href="{{ $fitur->linkB }}" class="font-['Clash_Display'] text-[20px] py-5 text-violet-600">learn more</a>
       </div>
       <div
         class="container flex flex-col p-5 bg-white rounded-2xl my-card  shadow-sm shadow-black  hover:bg-b hover:text-white ease-in duration-300 backdrop-blur-lg aspect-w-1 aspect-h-1 hover:shadow-sm hover:shadow-white  ">
-        <img class="icon size-12" src="/src/f4.png" alt="">
-        <h3 class="font-['Clash_Display'] text-[20px] py-4 ">Auto-Scaling</h3>
-        <P class="text-gray-600">ingat darah keturunan pekai akan mengalir ke anak dan cucunya dan ia akan tetap jadi
-          pengianat</P>
-        <a href="" class="font-['Clash_Display'] text-[20px] py-5 text-violet-600"> learn more</a>
+        <img class="icon size-12" src="{{ asset('storage/' . $fitur->logoC) }}" alt="">
+        <h3 class="font-['Clash_Display'] text-[20px] py-4 ">{{ $fitur->judulC }}</h3>
+        <P class="text-gray-600">{{ $fitur->deskripsiC }}</P>
+        <a href="{{ $fitur->linkC }}" class="font-['Clash_Display'] text-[20px] py-5 text-violet-600"> learn more</a>
       </div>
     </div>
+    @empty
+        <p>Tidak ada data terbaru</p>
+    @endforelse
   </section>
   <section class="home2 py-2  ">
     <div class="flex flex-row max-w-7xl gap-x-8 items-center mx-auto justify-center ">

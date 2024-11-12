@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('header');
             $table->string('logo');
-            $table->string('logoA')->nullable(); 
-            $table->string('logoB')->nullable(); 
-            $table->string('logoC')->nullable(); 
+            $table->string('logoA'); 
+            $table->string('logoB'); 
+            $table->string('logoC'); 
             
             $table->string('judul');
             $table->string('judulA');
