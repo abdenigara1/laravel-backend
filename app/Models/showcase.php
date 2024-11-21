@@ -4,20 +4,19 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
-class showcase extends Model
+class Showcase extends Model
 {
-    use HasFactory;
-    protected $fillable = [
-        'showA',
-        'linkA',
-        'showB',
-        'linkB',
-        'showC',
-        'linkC',
-        'showD',
-        'linkD',
+    protected $fillable = ['link', 'show', 'is_active'];
 
-    ];
-
+    public function setShowAttribute($value)
+    {
+        if (is_string($value)) {
+            $this->attributes['show'] = $value;
+        } else {
+            // Menyimpan file upload jika value adalah instance dari UploadedFile
+            $this->attributes['show'] = $value->store('showcases');
+        }
+    }
 }

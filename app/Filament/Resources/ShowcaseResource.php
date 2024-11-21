@@ -1,10 +1,12 @@
 <?php
 
 namespace App\Filament\Resources;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\ImageColumn;
 
-use App\Filament\Resources\HeroResource\Pages;
-use App\Filament\Resources\HeroResource\RelationManagers;
-use App\Models\Hero;
+use App\Filament\Resources\ShowcaseResource\Pages;
+use App\Filament\Resources\ShowcaseResource\RelationManagers;
+use App\Models\Showcase;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -13,41 +15,30 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class HeroResource extends Resource
+class ShowcaseResource extends Resource
 {
-    protected static ?string $model = Hero::class;
+    protected static ?string $model = Showcase::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     public static function form(Form $form): Form
     {
-        
         return $form
         ->schema([
-            Forms\Components\FileUpload::make('icon')
-                ->required()
-                ->image()
-                ->maxSize(2 * 1024) // 2MB
-                ->image('jpeg,png,jpg,gif'),
-            Forms\Components\TextInput::make('ach')
+            Forms\Components\TextInput::make('link')
                 ->required()
                 ->maxLength(255),
-            Forms\Components\TextInput::make('header')
+            Forms\Components\FileUpload::make('show')
                 ->required()
-                ->maxLength(255),
-            Forms\Components\TextInput::make('subHeader')
-                ->required()
-                ->maxLength(255),
-            Forms\Components\FileUpload::make('banner')
-                ->required()
-                ->image()
-                ->maxSize(2 * 1024), // 2MB
+                ->image() // Memastikan file yang diupload adalah gambar
+                ->directory('showcases'), // Tentukan direktori untuk menyimpan file
             Forms\Components\Select::make('is_active')
                 ->options([
                     'active' => 'Active',
-                    'not_active' => 'Not Active'
+                    'not_active' => 'Not Active',
                 ])
-                ->default('active') // default value set
+                ->default('active') // Menentukan nilai default
+                ->required(),
         ]);
     }
 
@@ -55,18 +46,14 @@ class HeroResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\ImageColumn::make('icon'),
-                Tables\Columns\TextColumn::make('ach'),
-                Tables\Columns\TextColumn::make('header'),
-                Tables\Columns\TextColumn::make('subHeader'),
-                Tables\Columns\ImageColumn::make('banner'),
-                Tables\Columns\TextColumn::make('is_active')
+                TextColumn::make('link'),
+                ImageColumn::make('show'),
+                TextColumn::make('is_active')
                 ->badge()
                 ->color(fn(string $state): string => match ($state) {
                      'active' => 'succes',
                      'not_active'=>'danger' 
                 }),
-                
                 //
             ])
             ->filters([
@@ -92,9 +79,9 @@ class HeroResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListHeroes::route('/'),
-            'create' => Pages\CreateHero::route('/create'),
-            'edit' => Pages\EditHero::route('/{record}/edit'),
+            'index' => Pages\ListShowcases::route('/'),
+            'create' => Pages\CreateShowcase::route('/create'),
+            'edit' => Pages\EditShowcase::route('/{record}/edit'),
         ];
     }
 }

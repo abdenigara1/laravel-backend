@@ -14,14 +14,8 @@ return new class extends Migration
         Schema::create('showcases', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('showA');
-            $table->string('linkA');
-            $table->string('showB');
-            $table->string('linkB');
-            $table->string('showC');
-            $table->string('linkC');
-            $table->string('showD');
-            $table->string('linkD');
+            $table->string('show');
+            $table->string('link');
             $table->enum('is_active', [ 'active', 'not_active'])->default('not_active');
         });
     }

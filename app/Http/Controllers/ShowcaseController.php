@@ -12,8 +12,14 @@ class ShowcaseController extends Controller
          */
         public function index()
         {
-            $showcases = showcase::where('is_active', 'active')->get();
-            return view('hero', compact('showcase'));
+            $showcases = showcase::where('is_active', 'active')
+            ->inRandomOrder() // Mengambil data secara acak
+            ->take(4)         // Batasi hingga 6 data
+            ->get();
+    
+     
+    
+            return view('hero', compact('showcases'));
         }
     
         /**

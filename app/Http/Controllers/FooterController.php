@@ -10,11 +10,22 @@ class FooterController extends Controller
     /**
      * Display a listing of the resource.
      */
+    // public function index()
+    // {
+    //     $footers = footer::where('is_active', 'active') // Filter data
+    //     ->inRandomOrder() // Mengacak data
+    //     ->limit(6) // Batasi hanya 6 record
+    //     ->select('ikon', 'text', 'link') // Kolom yang diambil
+    //     ->get();
+
+
+    //     return view('hero', compact('foot'));
+    // }
     public function index()
     {
-        $footers = footer::where('is_active', 'active')->get();
-        return view('hero', compact('footers'));
+
     }
+    
 
     /**
      * Show the form for creating a new resource.

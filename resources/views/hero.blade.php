@@ -390,16 +390,16 @@
 
 
 
-@forelse ($showcases as $showcase)
-  @if($showcase->is_active === 'active') 
   <section class="py-20">
     <h1 class=" text-gray-800 font-['Clash_Display'] text-[50px]  text-center">Our Showcase</h1>
     <p class="text-center text-gray-600">They built amazing website to help more people around the world
       <br>by using our recommendation services and products
     </p>
     <div class="flex flex-row gap-x-10 py-20 justify-center mx-auto">
+    @foreach ($showcases as $showcase)  
       <div class="relative group w-64 h-64">
-        <img src="/src/r3.png" alt="Image" class="w-full h-full object-cover rounded-md">
+
+        <img src="{{ Storage::url($showcase->show) }}" alt="showcase1" class="w-full h-full object-cover rounded-md">
 
         <!-- Border saat hover -->
         <div
@@ -407,75 +407,26 @@
         </div>
 
         <!-- Tombol saat hover -->
-        <button
-          class=" absolute bottom-10  left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 bg-violet-700 text-white px-5 py-2 rounded-full transition duration-300">
-          Lihat Detail
-        </button>
+         <a href="{{ $showcase->link }}" class=" absolute bottom-10  left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 bg-violet-700 text-white px-5 py-2 rounded-full transition duration-300" >
+         Lihat Detail
+         </a>
+    
+
+
+
+        
 
       </div>
-      <div class="relative group w-64 h-64">
-        <img src="/src/r3.png" alt="Image" class="w-full h-full object-cover rounded-md">
-
-        <!-- Border saat hover -->
-        <div
-          class="absolute inset-0 border-4 border-transparent rounded-md group-hover:border-violet-700  transition duration-300">
-        </div>
-
-        <!-- Tombol saat hover -->
-        <button
-          class=" absolute bottom-10  left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 bg-violet-700 text-white px-5 py-2 rounded-full transition duration-300">
-          Lihat Detail
-        </button>
-
-      </div>
-      <div class="relative group w-64 h-64">
-        <img src="/src/r3.png" alt="Image" class="w-full h-full object-cover rounded-md">
-
-        <!-- Border saat hover -->
-        <div
-          class="absolute inset-0 border-4 border-transparent rounded-md group-hover:border-violet-700  transition duration-300">
-        </div>
-
-        <!-- Tombol saat hover -->
-        <button
-          class=" absolute bottom-10  left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 bg-violet-700 text-white px-5 py-2 rounded-full transition duration-300">
-          Lihat Detail
-        </button>
-
-      </div>
-      <div class="relative group w-64 h-64">
-        <img src="/src/r3.png" alt="Image" class="w-full h-full object-cover rounded-md">
-
-        <!-- Border saat hover -->
-        <div
-          class="absolute inset-0 border-4 border-transparent rounded-md group-hover:border-violet-700  transition duration-300">
-        </div>
-
-        <!-- Tombol saat hover -->
-        <button
-          class=" absolute bottom-10  left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 bg-violet-700 text-white px-5 py-2 rounded-full transition duration-300">
-          Lihat Detail
-        </button>
+      @endforeach
 
 
-
-
-
-
-      </div>
 
     </div>
 
 
     </div>
   </section>
-  @endif
-@empty 
-    <div class="flex flex-col justify-center items-center">
-    <p>Tidak ada data terbaru</p>
-    <img src="{{ asset('src/noData.jpg') }}" alt="noData" class=" w-24 ">
-    </div>
-@endforelse
+
 
 
   <section class="py-2">
@@ -597,9 +548,8 @@
   </section>
 
 
-<footer>
-@forelse ($footers as $footer)
-  @if($footer->is_active === 'active')   
+  
+ 
   <section class=" relative grid place-content-around pt-20 ">
     <!-- Elemen dengan latar belakang bg-a -->
     <div class="  relative z-20  flex flex-row   justify-around bg-a gap-x-5 rounded-3xl p-10 ">
@@ -631,44 +581,28 @@
         </div>
       </div>
 
-      <!-- Grid Card -->
-      <div class="flex flex-col justify-between gap-5">
-        <div class="grid grid-cols-3 gap-x-5 ">
-          <div
-            class="container flex flex-col items-center text-center p-5 bg-white rounded-2xl my-card shadow-sm shadow-black  text-black  hover:bg-b hover:text-white ease-in duration-300 backdrop-blur-lg aspect-w-1 aspect-h-1 hover:shadow-sm hover:shadow-white">
-            <img class="icon object-cover size-12" src="/src/f1.png" alt="">
-            <h3 class="font-['Clash_Display'] text-[20px] py-4">Web Crawl</h3>
-          </div>
-          <div
-            class="container flex flex-col items-center text-center p-5 bg-white rounded-2xl my-card shadow-sm shadow-black hover:bg-b ease-in duration-300 backdrop-blur-lg text-black hover:text-white aspect-w-1 aspect-h-1 hover:shadow-sm hover:shadow-white">
-            <img class="icon object-cover size-12" src="/src/f1.png" alt="">
-            <h3 class="font-['Clash_Display'] text-[20px] py-4">Fast Report</h3>
-          </div>
-          <div
-            class="container flex flex-col items-center text-center p-5 bg-white rounded-2xl my-card shadow-sm shadow-black hover:bg-b ease-in duration-300 backdrop-blur-lg text-black hover:text-white aspect-w-1 aspect-h-1 hover:shadow-sm hover:shadow-white">
-            <img class="icon object-cover size-12" src="/src/f1.png" alt="">
-            <h3 class="font-['Clash_Display'] text-[20px] py-4">Anti-DDoS</h3>
-          </div>
+      <!-- flex Card -->
+      <div class="flex flex-col  gap-5">
+    <!-- Div 1 -->
+        <div class="flex flex-row gap-x-5">
+            @foreach ($div1 as $footer)  
+            <div class="container flex flex-col h-44 aspect-square items-center text-center p-5 bg-white rounded-2xl my-card shadow-sm shadow-black text-black hover:bg-b hover:text-white ease-in duration-300 backdrop-blur-lg aspect-w-1 aspect-h-1 hover:shadow-sm hover:shadow-white">
+                <img class="icon aspect-square size-14" src="{{ asset('storage/' . $footer->icon) }}" alt="">
+                <h3 class="line-clamp-2 font-['Clash_Display'] text-[20px] py-4">{{ $footer->text }}</h3>
+            </div>
+            @endforeach   
         </div>
-        <div class="grid grid-cols-3 gap-x-5 ">
-          <div
-            class="container flex flex-col items-center text-center p-5 bg-white rounded-2xl my-card shadow-sm shadow-black hover:bg-b ease-in duration-300 backdrop-blur-lg text-black hover:text-white aspect-w-1 aspect-h-1 hover:shadow-sm hover:shadow-white">
-            <img class="icon object-cover size-12" src="/src/f1.png" alt="">
-            <h3 class="font-['Clash_Display'] text-[20px] py-4">Auto-Scale</h3>
-          </div>
-          <div
-            class="container flex flex-col items-center text-center p-5 bg-white rounded-2xl my-card shadow-sm shadow-black hover:bg-b ease-in duration-300 backdrop-blur-lg text-black hover:text-white aspect-w-1 aspect-h-1 hover:shadow-sm hover:shadow-white">
-            <img class="icon object-cover size-12" src="/src/f1.png" alt="">
-            <h3 class="font-['Clash_Display'] text-[20px] py-4">AI Perform</h3>
-          </div>
-          <div
-            class="container flex flex-col items-center text-center p-5 bg-white rounded-2xl my-card shadow-sm shadow-black hover:bg-b ease-in duration-300 backdrop-blur-lg text-black hover:text-white aspect-w-1 aspect-h-1 hover:shadow-sm hover:shadow-white">
-            <img class="icon object-cover size-12 " src="/src/f1.png" alt="">
-            <h3 class="font-['Clash_Display'] text-[20px] py-4">Top Plugins+</h3>
-          </div>
+
+        <!-- Div 2 -->
+        <div class="flex flex-row gap-x-5">
+            @foreach ($div2 as $footer)   
+            <div class="container flex flex-col aspect-square items-center text-center p-5 bg-white rounded-2xl my-card shadow-sm shadow-black text-black hover:bg-b hover:text-white ease-in duration-300 backdrop-blur-lg aspect-w-1 aspect-h-1 hover:shadow-sm hover:shadow-white">
+                <img class="icon aspect-square  size-16" src="{{ asset('storage/' . $footer->icon) }}" alt="">
+                <h3 class="line-clamp-2 font-['Clash_Display'] text-[20px] py-4">{{ $footer->text }}</h3>
+            </div>
+            @endforeach   
         </div>
       </div>
-
     </div>
 
 
@@ -742,19 +676,12 @@
 
     </div>
   </section>
-  @endif
-@empty 
-    <div class="flex flex-col justify-center items-center">
-    <p>Tidak ada data terbaru</p>
-    <img src="{{ asset('src/noData.jpg') }}" alt="noData" class=" w-24 ">
-    </div>
-@endforelse
 
 
 
 
 
-</footer>
+
 
 
 

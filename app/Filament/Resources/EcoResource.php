@@ -24,29 +24,28 @@ class EcoResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('header')
-                ->required()
-                ->maxLength(255),
+                    ->required()
+                    ->maxLength(255),
                 Forms\Components\TextInput::make('subHeader')
-                ->required()
-                ->maxLength(255),
+                    ->required()
+                    ->maxLength(255),
                 Forms\Components\TextInput::make('achA')
-                ->required()
-                ->maxLength(255),
+                    ->required()
+                    ->maxLength(255),
                 Forms\Components\TextInput::make('achB')
-                ->required()
-                ->maxLength(255),
+                    ->required()
+                    ->maxLength(255),
                 Forms\Components\TextInput::make('achC')
-                ->required()
-                ->maxLength(255),
+                    ->required()
+                    ->maxLength(255),
                 Forms\Components\FileUpload::make('banner')
-                ->required()
-                ->image(),
-                Forms\Components\select::make('is_active')
-                ->options([
-                    'active'=>'Active',
-                    'not_active' =>'Not Active'
-                ])
-
+                    ->required()
+                    ->image(),
+                Forms\Components\Select::make('is_active') // Fixed 'select' to 'Select'
+                    ->options([
+                        'active' => 'Active',
+                        'not_active' => 'Not Active',
+                    ]),
             ]);
     }
 
@@ -61,13 +60,11 @@ class EcoResource extends Resource
                 Tables\Columns\TextColumn::make('subHeader'),
                 Tables\Columns\ImageColumn::make('banner'),
                 Tables\Columns\TextColumn::make('is_active')
-                ->badge()
-                ->color(fn(string $state): string => match ($state) {
-                     'active' => 'succes',
-                     'not_active'=>'danger'
-                }),
-
-                //
+                    ->badge()
+                    ->color(fn (string $state): string => match ($state) {
+                        'active' => 'success', // Fixed 'succes' to 'success'
+                        'not_active' => 'danger',
+                    }),
             ])
             ->filters([
                 //
@@ -81,6 +78,7 @@ class EcoResource extends Resource
                 ]),
             ]);
     }
+
     public static function getRelations(): array
     {
         return [

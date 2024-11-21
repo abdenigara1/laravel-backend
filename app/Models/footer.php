@@ -9,21 +9,12 @@ class footer extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'iconA',
-        'textA',
-        'linkA',
+        'icon',
+        'text',
+        'link',
+        'is_active'
 
-        'iconB',
-        'textB',
-        'linkB',
 
-        'iconC',
-        'textC',
-        'linkC',
-
-        'iconD',
-        'textD',
-        'linkD',
 
     ];
 }

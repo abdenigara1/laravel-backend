@@ -15,22 +15,9 @@ return new class extends Migration
 
             $table->id();
             $table->timestamps();
-            $table->string('iconA');
-            $table->string('textA');
-            $table->string('linkA');
-
-            $table->string('iconB');
-            $table->string('textB');
-            $table->string('linkB');
-
-            $table->string('iconC');
-            $table->string('textC');
-            $table->string('linkC');
-
-            $table->string('iconD');
-            $table->string('textD');
-            $table->string('linkD');
-
+            $table->string('icon');
+            $table->string('text');
+            $table->string('link');
             $table->enum('is_active', [ 'active', 'not_active'])->default('not_active');
         });
     }

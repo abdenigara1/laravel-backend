@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\interController;
+use App\Http\Controllers\DataController;
 
 
 
@@ -20,4 +21,4 @@ use App\Http\Controllers\interController;
 //     return view('welcome');
 // });
 Route::get('/', [interController::class, 'index']);
-
+Route::get('/try', [DataController::class, 'index']);
