@@ -67,49 +67,56 @@
     </div>
   </nav>
 
-  <!-- main -->
-  @forelse ($heroes as $hero)
+<!-- main -->
+@forelse ($heroes as $hero)
+  @if($hero->is_active === 'active')
   <section class="max-w-7xl mx-auto py-24">
-
-    <div class="flex  flex-row items-center justify-around">
+    <div class="flex flex-row items-center justify-around">
       <div class="flex flex-col space-y-6">
-        <div class="flex flex-row items-center ">
+        <div class="flex flex-row items-center">
           <div class="bg-white rounded-full small-badge px-4 py-2 gap-x-3 flex flex-row">
-            <a href="#">
-              <img class="w-7" src="{{ asset('storage/' . $hero->icon) }}" alt="global logo">
+            <a href="#" aria-label="Global Logo">
+              <img class="w-7" src="{{ asset('storage/' . $hero->icon ?: 'default-icon.png') }}" alt="global logo">
             </a>
             <p class="font-semibold text-xl text-indigo-500">
-            {{ $hero->ach }}
+              {{ $hero->ach }}
             </p>
           </div>
         </div>
-        <div class="py-6 ">
-          <h1 class=" text-gray-800 font-['Clash_Display'] text-[70px] leading-none line-clamp-3 max-w-2xl">
+        <div class="py-6">
+          <h1 class="text-gray-800 font-['Clash_Display'] text-[70px] leading-none line-clamp-3 max-w-2xl">
             {{ $hero->header }}
           </h1>
-          <p class=" text-gray-600 mt-8">
-          {{ $hero->subHeader }}
+          <p class="text-gray-600 mt-8">
+            {{ $hero->subHeader }}
           </p>
         </div>
         <div class="flex flex-row">
-          <a href="" class="bg-slate-700 rounded-full  text-white py-2 px-4  hover:bg-violet-500">klik</a>
+          <a href="#" class="bg-slate-700 rounded-full text-white py-2 px-4 hover:bg-violet-500" aria-label="Klik untuk informasi lebih lanjut">Klik</a>
           <div class="flex flex-row items-center mx-3">
-            <a href=""><img src="/src/device-message.png" alt="" srcset=""></a>
+            <a href="#" aria-label="Schedule Demo">
+              <img src="/src/device-message.png" alt="Device Message">
+            </a>
             <p>Schedule demo</p>
-
           </div>
         </div>
-
-
       </div>
-      <div class="h-96 w-96 overflow-hidden rounded-xl" >
-        <img class="h-full w-full object-cover" src="{{ asset('storage/' . $hero->banner) }}" alt="" srcset="">
+      <div class="h-96 w-96 overflow-hidden rounded-xl">
+        <img class="h-full w-full object-cover" src="{{ asset('storage/' . $hero->banner ?: 'default-banner.jpg') }}" alt="banner">
       </div>
     </div>
   </section>
-    @empty
-        <p>Tidak ada data terbaru</p>
-    @endforelse
+  @endif
+@empty 
+<div class="flex flex-col justify-center items-center">
+  <p>Tidak ada data terbaru</p>
+  <img src="{{ asset('src/noData.jpg') }}" alt="noData" class=" w-24 ">
+</div>
+
+@endforelse
+
+
+@forelse ($fiturs as $fitur)
   <section class="partners">
     <div class="flex flex-row max-w-7xl py-10 m-auto items-center gap-x-8 justify-center">
       <svg width="142" height="34" viewBox="0 0 142 34" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -264,7 +271,9 @@
   <section class="features max-w-7xl py-2 m-auto ">
     <h3 class="text-center text-gray-800 font-['Clash_Display'] text-[50px] leading-none py-8">Your Best Choices</h3>
     <div class="grid grid-cols-4 gap-x-5 py-20 mx-5 ">
-    @forelse ($fiturs as $fitur)
+  
+
+  @if($fitur->is_active === 'active')
       <div
         class="container flex flex-col p-5 bg-white rounded-2xl my-card  shadow-sm shadow-black  hover:bg-b hover:text-white ease-in duration-300 backdrop-blur-lg aspect-w-1 aspect-h-1 hover:shadow-sm hover:shadow-white ">
         <img class="icon size-12" src="{{ asset('storage/' . $fitur->logo) }}" alt="">
@@ -294,12 +303,19 @@
         <a href="{{ $fitur->linkC }}" class="font-['Clash_Display'] text-[20px] py-5 text-violet-600"> learn more</a>
       </div>
     </div>
-    @empty
-        <p>Tidak ada data terbaru</p>
-    @endforelse
+  @endif
+@empty 
+<div class="flex flex-col justify-center items-center">
+  <p>Tidak ada data terbaru</p>
+  <img src="{{ asset('src/noData.jpg') }}" alt="noData" class=" w-24 ">
+</div>
+@endforelse
   </section>
-  @forelse ($ecos as $eco)
-  <section class="home2 py-2  ">
+
+
+@forelse ($ecos as $eco)
+  @if($fitur->is_active === 'active')
+  <section class="home2 py-2 ">
     <div class="flex flex-row max-w-7xl gap-x-8 items-center mx-auto justify-center">
         <div class="h-full w-[500px] overflow-hidden rounded-xl">
             <img class="w-full h-full object-cover" src="{{ asset('storage/' . $eco->banner) }}" alt="">
@@ -363,10 +379,19 @@
       </div>
     </div>
   </section>
-  @empty
+  @endif
+@empty 
+  <div class="flex flex-col justify-center items-center">
   <p>Tidak ada data terbaru</p>
-    @endforelse
-  <!-- tab terakhir -->
+  <img src="{{ asset('src/noData.jpg') }}" alt="noData" class=" w-24 ">
+  </div>
+@endforelse
+
+
+
+
+@forelse ($showcases as $showcase)
+  @if($showcase->is_active === 'active') 
   <section class="py-20">
     <h1 class=" text-gray-800 font-['Clash_Display'] text-[50px]  text-center">Our Showcase</h1>
     <p class="text-center text-gray-600">They built amazing website to help more people around the world
@@ -444,9 +469,18 @@
 
     </div>
   </section>
+  @endif
+@empty 
+    <div class="flex flex-col justify-center items-center">
+    <p>Tidak ada data terbaru</p>
+    <img src="{{ asset('src/noData.jpg') }}" alt="noData" class=" w-24 ">
+    </div>
+@endforelse
+
+
   <section class="py-2">
     <h1 class=" text-gray-800 font-['Clash_Display'] text-[50px]  text-center">Frequently Asked Questions</h1>
-    <div class="flex flex-row justify-center ga py-24 m-auto ">
+    <div class="flex flex-row justify-center  py-24 m-auto ">
       <div class="">
         <div class="flex flex-col justify-around gap-y-8 mx-5">
           <!-- Pertanyaan 1 -->
@@ -561,6 +595,11 @@
 
 
   </section>
+
+
+<footer>
+@forelse ($footers as $footer)
+  @if($footer->is_active === 'active')   
   <section class=" relative grid place-content-around pt-20 ">
     <!-- Elemen dengan latar belakang bg-a -->
     <div class="  relative z-20  flex flex-row   justify-around bg-a gap-x-5 rounded-3xl p-10 ">
@@ -634,6 +673,9 @@
 
 
 
+
+
+
     <!-- Elemen dengan latar belakang bg-b -->
     <div class="absolute top-0 left-0 w-full bg-b px-6 py-12 flex flex-row justify-around z-10 mt-72 ">
       <div class="flex flex-col ">
@@ -700,6 +742,22 @@
 
     </div>
   </section>
+  @endif
+@empty 
+    <div class="flex flex-col justify-center items-center">
+    <p>Tidak ada data terbaru</p>
+    <img src="{{ asset('src/noData.jpg') }}" alt="noData" class=" w-24 ">
+    </div>
+@endforelse
+
+
+
+
+
+</footer>
+
+
+
 </body>
 
 <script>

@@ -16,8 +16,8 @@ use App\Http\Controllers\interController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('hero', [interController::class, 'index']);
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+Route::get('/', [interController::class, 'index']);
 
